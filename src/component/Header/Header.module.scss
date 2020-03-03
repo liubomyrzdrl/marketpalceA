@@ -1,0 +1,47 @@
+.container {
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    width: inherit;
+    margin-top: 2%;    
+    // margin-top: 27px; 
+}
+
+.right {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 20%;
+    margin-left: 10%;
+    .loginButton {
+        span {
+            font-weight: 20px;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+    }
+    .loginButton:hover {
+        color: #349A89;
+        transition: 0.5s ease-in-out;
+    }
+    .sellButton {
+        button {
+             background: #349A89;
+             border-radius: 4px;
+             color: white;
+             height: 31px;
+             padding-left: 74.03%;
+             padding-right: 23.54%;
+             padding-top: calc(50% - 31px/2 - 498.5px);
+             padding-bottom: calc(50% - 31px/2 - 498.5px);
+             font-family: Helvetica;
+             font-size: 14px;
+             line-height: 31px;
+        }
+ 
+       
+    }
+}
+.left {
+
+}

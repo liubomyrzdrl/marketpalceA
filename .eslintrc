@@ -1,0 +1,60 @@
+{
+    "env": {
+      "es6": true,
+      "jest": true,
+      "browser": true
+    },
+    "extends": [
+      "airbnb-base",
+      "airbnb",
+      "prettier"
+    ],
+    "globals": {
+      "Atomics": "readonly",
+      "SharedArrayBuffer": "readonly"
+    },
+    "parserOptions": {
+      "ecmaFeatures": {
+        "jsx": true
+      },
+      "ecmaVersion": 2018,
+      "sourceType": "module"
+    },
+    "plugins": ["react", "react-hooks", "prettier", "promise"],
+    "rules": {
+      "no-unused-expressions": "off",
+      "import/prefer-default-export": "off",
+      "react/jsx-filename-extension": "off",
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": "warn",
+      "react/jsx-props-no-spreading": "off",
+      "react/require-default-props": "off",
+      "react/forbid-prop-types": "off",
+      "semi": [2, "always"],
+      "object-curly-spacing": ["error", "always"],
+      "object-curly-newline": "error",
+      "key-spacing": "error",
+      "max-len": [
+        "error",
+        105,
+        { "ignoreComments": true, "ignoreStrings": true }
+      ],
+      "no-underscore-dangle": "off",
+      "quotes": [
+        "error",
+        "single",
+        { "avoidEscape": true, "allowTemplateLiterals": true }
+      ],
+      "comma-dangle": [
+        "error",
+        {
+          "arrays": "always-multiline",
+          "objects": "always-multiline",
+          "imports": "always-multiline",
+          "exports": "always-multiline",
+          "functions": "ignore"
+        }
+      ]
+    }
+  }
+  

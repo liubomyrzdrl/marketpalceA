@@ -1,0 +1,9 @@
+$main-color: #F2F2F2;
+$white-color: #fff;
+$black-color: #000;
+
+:export {
+  WHITE: $white-color;
+  BLACK: $black-color;
+  MAIN: $main-color;
+}

@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect }  from 'react'; 
+import makeInspectable from 'mobx-devtools-mst';
+import { createStore } from './stores/createStore';
+import { Provider } from './stores/createStore.js';
+import Modal from 'react-modal';
+import  Router  from './scenes/routes';
+import s from './App.module.scss';
+import { getSnapshot } from 'mobx-state-tree';
 
-function App() {
+const store = createStore();
+store.bootstrap();
+function App() { 
+ 
+ console.log(getSnapshot(store));
+
+
+//  useEffect(() => {
+    
+//  },[]);
+
+ 
+  makeInspectable(store);
+ 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main className={s.wrapper}>        
+      <Provider value={store}>
+        <Router />
+      </Provider>
+    </main>
   );
 }
 
-export default App;
+Modal.setAppElement('#modalRoot');
+
+export default App ;
