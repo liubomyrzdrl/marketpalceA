@@ -11,8 +11,6 @@ import { useStore } from '../../stores/createStore';
 
 const UserInfo = observer(() => {
   const store = useStore();
- 
-
   return (
     <div>
    {   console.log(store.viewer.user)}
@@ -26,17 +24,18 @@ const UserInfo = observer(() => {
   );
 });
 
-const Header = observer(({ color }) => {
+const Header = observer(({ color, name }) => {
   const  history  = useHistory();
   const store = useStore();
   function navigateToLogin () {
     history.push(routes.login);
-    console.log(history);
+    
   }
+  console.log(color);
     return (
       <header className={s.container} style={{ backgroundColor: color }}>
         <NavLink to={routes.home}>
-          <Icon name="logo" />
+          <Icon name={name} />
         </NavLink>  
         
         <div className={s.right}>

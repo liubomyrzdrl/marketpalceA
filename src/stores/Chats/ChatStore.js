@@ -23,6 +23,7 @@ import {  ChatCollectionSchema } from "../schemas";
             const chat =  store.getById(message.message.chatId);
  
             if (typeof chat !=='undefined') {
+                console.log(message.message);
                 chat.messages.addMessage(message.message);         
             }
         }         

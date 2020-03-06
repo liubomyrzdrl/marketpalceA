@@ -41,10 +41,17 @@ export const ChatModel = types.model('Chat',{
          try {
             const res =  await Api.Chats.sendMessage(store.id, text);
             console.log(res.data);
-            debugger;
+     
+               debugger;
+            store.messages.addMessage(res.data);
             const result  = flow.merge(res.data, MessageCollectionSchema);
-            console.log(result);
-            console.log('result');
+               
+               
+             console.log('result');
+             console.log(result);
+     
+        
+           
          } catch (err) {
             console.log(err);
          }

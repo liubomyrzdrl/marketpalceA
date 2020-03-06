@@ -13,7 +13,7 @@ const MessageList = observer(() => {
 
     useEffect(() => {
       if(chat) {      
-         chat.messages.fetch.run();     
+         chat.messages.fetch.run();   
         
       }
        

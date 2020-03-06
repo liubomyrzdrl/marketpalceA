@@ -1,9 +1,14 @@
 $main-color: #F2F2F2;
 $white-color: #fff;
-$black-color: #000;
+// $black-color:  linear-gradient(180deg, #090810 0%, #171236 100%);
+$black-color:   #090810;
+$test-color: linear-gradient(left, #8e70af, #48bfed);; 
+
 
 :export {
   WHITE: $white-color;
   BLACK: $black-color;
   MAIN: $main-color;
+  TEST: $test-color;
+
 }
