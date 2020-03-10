@@ -4,9 +4,11 @@ import { observer } from 'mobx-react';
 import uuid from 'uuid/v4';
 import { NavLink, generatePath } from 'react-router-dom';
 import { routes } from '../routes';
+import { BLACK, TEST } from '../../scss/variables.scss';
 
 const Home =  () =>  {
    const store = useStore();
+
    
     useEffect(() => {
         store.latestProducts.fetchLatest.run();
@@ -18,7 +20,7 @@ const Home =  () =>  {
       }
     return (
       <div> 
-        Home 
+ 
         <ul>            
           { store.latestProducts.items.map((item) => {
             return (
