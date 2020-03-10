@@ -53,6 +53,9 @@ export const Products = {
   byUserId(id) {
     return axios.get(`/ap/users/${id}/products`);
   },
+  getProductsSearch(text){
+    return axios.get(`/ap/products/search?keywords=${text}`);
+  },
  };
 
  export const Users = {

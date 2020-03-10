@@ -1,4 +1,5 @@
-import React from 'react';
+import React from  'react';
+
 import { useHistory } from 'react-router-dom'; 
 import t from 'prop-types';
 import { NavLink } from 'react-router-dom';
@@ -25,7 +26,7 @@ const UserInfo = observer(() => {
   );
 });
 
-const Header = observer(({ color, name }) => {
+const SimpleHeader = observer(({ color, name }) => {
   const  history  = useHistory();
   const store = useStore();
   function navigateToLogin () {
@@ -37,19 +38,12 @@ const Header = observer(({ color, name }) => {
       <header className={s.container} style={{ backgroundColor: color }}>
         <NavLink to={routes.home}>
           <Icon name={name} />
-        </NavLink>  
-        <InputSearch />
+        </NavLink>        
         
         <div className={s.right}>
-        <NavLink to={routes.inbox}>
-          <Icon name={'chat'} />
-        </NavLink>  
-          <div className={s.sellButton}>
-            <button type="button">SELL</button>
-          </div>   
           {!store.auth.isLogin ? (
             <div className={s.loginButton}>
-              <span onClick={navigateToLogin}>login</span>
+             <span onClick={navigateToLogin}>login</span>
             </div>
            ) : <UserInfo />}
                    
@@ -60,9 +54,9 @@ const Header = observer(({ color, name }) => {
     );
 });
 
-export default Header;
+export default SimpleHeader;
 
-Header.propTypes = {
+SimpleHeader.propTypes = {
  color: t.string,
 };
 

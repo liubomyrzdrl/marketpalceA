@@ -6,6 +6,7 @@ import Api, { SocketApi }   from '../api';
 import { LatestProductsStore } from './Products/LatestProductsStore';
 import { EntitieStore } from './EntityStore';
 import { ChatStore } from './Chats/ChatStore';
+import { SearchProductsStore } from './Products/SearchProductsStore';
 
 
  
@@ -13,6 +14,7 @@ export const RootStore = types.model('RootStore',{
    auth: types.optional(AuthStore, {}),  
    viewer: types.optional(ViewerStore, {}),
    latestProducts: types.optional(LatestProductsStore, {}),
+   searchProducts: types.optional(SearchProductsStore,{}),
    entities: types.optional(EntitieStore, {}),
    chats: types.optional(ChatStore, {}),
 })

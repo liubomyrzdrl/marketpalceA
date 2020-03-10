@@ -8,6 +8,7 @@ import ProductView from '../ProductView/ProductView';
 import UserView from '../User/UserView';
 import InboxView from '../Inbox/InboxView';
 import s from './Main.module.scss';
+import { ProductSearch } from '../ProductSearch/ProductSearch';
 
 
 export function Main() {
@@ -15,9 +16,11 @@ export function Main() {
     return (
       <main> 
         <Header color={BLACK} name={'logoWhite'} />    
+        
         <Switch>
           <Route exact path={routes.home} component={Home} />
           <Route path={routes.product} component={ProductView} />
+          {/* <Route path={routes.searchProd} component={ProductSearch} /> */}
           <Route path={routes.users} component={UserView} />
           <Route path={routes.inbox} component={InboxView} />
         </Switch>      

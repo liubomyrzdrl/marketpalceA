@@ -1,0 +1,39 @@
+.searchContainer {
+    margin-bottom: 1%;
+    width: 450px;
+    form {
+        display: flex;
+        justify-content: space-around;
+        .inputName {
+            width: 200px;
+            border-radius: 25px;
+         
+            input {
+                width: inherit;   
+                height: 44px;
+                margin-right: 3%;
+            }
+            .inputProductsBlock {
+                position: absolute;
+                width: inherit;
+                .inputProductsContent {
+                    display: flex;   
+                    margin-bottom: 1%;                 
+                    img {
+                        width: 50px;
+                        margin-right: 2% ;
+                        height: inherit;
+                    }
+                }
+            }
+        }
+        .searchButton {
+           background-color: #3E3961;
+           text-transform: uppercase;
+           color: #fff;
+           width: 176px;
+           border: none;
+           height: 50px;
+       }
+    }
+}

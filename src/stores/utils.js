@@ -104,8 +104,20 @@ export function createCollection(ofModel, asyncModels = {}) {
                  }          
         },
         update (key,value) {
-            this.add(key,value)
+            this.add(key,value);
         }  ,     
     }));
     return types.optional(collection, {});
 };
+
+export function debounce(f, t) {
+    return function (args) {
+      const previousCall = this.lastCall;
+      this.lastCall = Date.now();
+      // eslint-disable-next-line no-irregular-whitespace
+      if (previousCall && ((this.lastCall - previousCall) <= t)) {
+        clearTimeout(this.lastCallTimer);
+      }
+      this.lastCallTimer = setTimeout(() => f(args), t);
+    };
+  }

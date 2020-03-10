@@ -7,20 +7,16 @@ import { routes } from '../routes';
 import { BLACK, TEST } from '../../scss/variables.scss';
 
 const Home =  () =>  {
-   const store = useStore();
-
-   
+   const store = useStore();   
     useEffect(() => {
         store.latestProducts.fetchLatest.run();
-    },[]);
-      
+    },[]);     
 
     if( store.latestProducts.fetchLatest.isLoading){
         return <div>Loading ....</div>;
       }
     return (
-      <div> 
- 
+      <div>  
         <ul>            
           { store.latestProducts.items.map((item) => {
             return (
