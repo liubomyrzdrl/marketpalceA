@@ -14,7 +14,7 @@ export function Main() {
  
     return (
       <main> 
-        <Header color={BLACK} name={'logoWhite'} />    
+        <Header color={BLACK} name="logoWhite" />    
         <Switch>
           <Route exact path={routes.home} component={Home} />
           <Route path={routes.product} component={ProductView} />

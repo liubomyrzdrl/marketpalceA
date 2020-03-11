@@ -24,7 +24,7 @@ const history = useHistory();
     return (
       <div className={s.login}>
         <div className={s.login__header}>
-          <Header color={MAIN} />               
+          <Header color={MAIN} name='logo' />               
         </div>
         <div className={s.login__block}>
           <div className={s.logincontainer}>
