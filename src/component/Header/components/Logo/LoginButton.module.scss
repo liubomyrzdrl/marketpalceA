@@ -1,0 +1,11 @@
+.loginButton {
+    span {
+        font-weight: 20px;
+        text-transform: uppercase;
+        cursor: pointer;
+    }
+}
+.loginButton:hover {
+    color: #349A89;
+    transition: 0.5s ease-in-out;
+}

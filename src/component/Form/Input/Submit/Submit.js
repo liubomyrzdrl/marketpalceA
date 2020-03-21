@@ -1,10 +1,11 @@
 import React from 'react';
 import s from './Submit.module.scss';
 
-function Submit({ text }) {
+const  Submit =({ text }) => {
+ 
     return (
       <button type="submit" className={s.continue}>{text}</button>
     );
-}
+};
 
 export default Submit;

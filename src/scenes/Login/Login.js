@@ -1,54 +1,67 @@
-import React from 'react';
+import React, {useState} from 'react';
 import LoginForm from './components/LoginForm/LoginForm';
 import s from './Login.module.scss';
 import { MAIN } from '../../scss/variables.scss';
-import Header from '../../component/Header/Header';
+ 
 import { useStore } from '../../stores/createStore';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 import { routes } from '../routes';
+import SimpleHeader from '../../component/Header/SimpleHeader';
+import { Footer } from '../../component/Footer/Footer';
+import { observer } from 'mobx-react';
 
 
-export function Login () {  
-const store = useStore();
+export const Login = observer(() => {  
+  const[loginError,setLoginError]=useState(false);
+  const store = useStore();
+ 
 const history = useHistory();
-    function onSubmit ({ email,password }) {
-      store.auth.login.run({ email,password });
-      history.push(routes.home);
-        console.log(email,password);
-
+ 
+ function  onSubmit ({ email,password }) {      
+   store.auth.login.run({ email,password });
+    
+    //Get messages from server about 'OK' or 'WRONG'
+    const  serverMessage=store.logmessage.getMessage();       
+       
+      if(serverMessage==='WRONG_PASSWORD') {
+         setLoginError(true);
+      }
+      if(serverMessage==='OK') {
+        setLoginError(false);
+        history.push(routes.home);
+     }
     }
-
     function onRegister () {
         console.log('onRegister');
+        history.push(routes.register);
     }
     return (
       <div className={s.login}>
         <div className={s.login__header}>
-          <Header color={MAIN} />               
+          <SimpleHeader color={MAIN} name='logo' />
         </div>
-        <div className={s.login__block}>
-          <div className={s.logincontainer}>
-            <div className={s.login__block_title}>
-              Login
-            </div>
-     
-            {/* { store.auth.login.isLoading ? ( */}
-            {/* <div>...Loading</div> */}
-            {/* ): */}
-            <LoginForm text="Login" onSubmit={onSubmit} />          
-            {/* </div> */}
-          
-            <div className={s.register}>
-              <div>
-                I have no accaunt             
-                <div onClick={onRegister}>
-                  REGISTER NOW        
-                </div>          
+        <div className={s.login__blockContainer}>
+          <div className={s.login__block}>
+            <div className={s.logincontainer}>
+              <div className={s.login__block_title}>
+                Login
               </div>
-            </div>
-          </div>  
-   
+        
+              <LoginForm text="Login" onSubmit={onSubmit} />   
+              { loginError && <div style={{ color: 'red' }}>WRONG EMAIL OR PASSWORD</div>}       
+                      
+              <div className={s.register}>
+                <div className={s.register__content}> 
+                  <div>I have no accaunt  </div>           
+                  <div className={s.register__title} onClick={onRegister}>
+                    REGISTER NOW        
+                  </div>          
+                </div>
+              </div>
+            </div>        
+          </div>
         </div>
+        <Footer />
       </div>
     );
-}
+});

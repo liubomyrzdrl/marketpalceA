@@ -4,6 +4,9 @@
     label {
         display: flex;
         flex-direction: column;
+        .labelTitle {
+          margin-bottom: 1%;
+        }
           input {
             height: 38px;
             background: #F9FAFB;
@@ -11,8 +14,6 @@
             box-sizing: border-box;
             border-radius: 5px;
             margin-bottom: 7%;
+      }
     }
-    }
-  
-
-}
+  }

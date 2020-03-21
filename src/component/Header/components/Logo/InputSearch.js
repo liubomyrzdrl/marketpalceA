@@ -24,18 +24,16 @@ export const  InputSearch =  observer(()=> {
     function onSubmit () {
       if (text === '') {
         return;
-      }else{
-        history.push(generatePath(routes.searchProd,{ text }));
-        setText('');
-        
       }
+        history.push(generatePath(routes.searchProd,{ text }));
+        setText('');    
        
     };
     // const callApi = () => { setReload(true); }; 
     // const [debouncedCallApi] = useState(() => _.debounce(callApi, 1000));    
 
     // function handleChange(e) { 
-    //   setText(e.target.value);
+    //  setText(e.target.value);  
     //   debouncedCallApi(); 
     // }
 
@@ -49,7 +47,7 @@ export const  InputSearch =  observer(()=> {
       <div className={s.searchContainer}>
         <form onSubmit={onSubmit}>
           <div className={s.inputName}>
-            <input type='text' onChange={e => handleChange(e.target.value)} value={text} />
+            <input type='text' onChange={e => handleChange(e.target.value)}   />
             {/* <input type='text' onChange={handleChange}  /> */}
             {text===''? null : (
               <div className={s.inputProductsBlock} style={{ backgroundColor: '#fff' }}>

@@ -1,73 +1,83 @@
 .login {
     display: flex;
     flex-direction: column;
-     background-color: #F2F2F2;
+    background-color: #F2F2F2;
+    height: 100%;
     &__header {
         margin: 0 auto;
         display: flex;
         justify-content: center;
         width: 1143px;
+        height: 20%;
     }
-    &__block {
-        position: absolute;
-         display: flex;
-         flex-direction: column;
-         justify-content: center;
-         left: 35.28%;
-         right: 35.21%;
-         top: 12.78%;
-         bottom: 13.43%;
-         &_title {
-             text-align: center;             
-             font-family: Helvetica;
-             font-size: 22px;
-             line-height: 25px;
-            margin-top: 7%;
-         }
-        .logincontainer {   
-            display: flex;    
-            flex-direction: column;
-            justify-content: center;
-            padding-left: 7%;
-            padding-right: 7%;       
+    .login__blockContainer {
+        height: 70%;
+        .login__block {
+            position: absolute;
+             display: flex;
+             flex-direction: column;
+             justify-content: center;
+             left: 35.28%;
+             right: 35.21%;
+             top: 12.78%;
+             bottom: 13.43%;
+             &_title {
+                 text-align: center;             
+                 font-family: Helvetica;
+                 font-size: 22px;
+                 line-height: 25px;
+                margin-top: 4%;
+             }
+            .logincontainer {   
+                display: flex;    
+                flex-direction: column;
+                justify-content: center;
+                padding-left: 7%;
+                padding-right: 7%;       
+                background: #FFFFFF;
+                box-shadow: 0px 2px 42px rgba(0, 0, 0, 0.111233);
+                border-radius: 7px;
+                input {
+                    height: 38px;
+                    background: #F9FAFB;
+                    border: 1px solid #DEDEE0;
+                    box-sizing: border-box;
+                    border-radius: 5px;
+                    margin-bottom: 4%;
+                 }
+                 .continue {
+                    margin-bottom: 7%;
+                    background: #349A89;
+                    border-radius: 5px;
+                    height: 58px;
+                    font-family: Helvetica;
+                    font-size: 16px;
+                    line-height: 18px;
+                    text-align: center;
+                    letter-spacing: 0.4px;
+                    color: #FFFFFF;
+                 }
+            }
+        }
+        .register {
             background: #FFFFFF;
             box-shadow: 0px 2px 42px rgba(0, 0, 0, 0.111233);
             border-radius: 7px;
-            input {
-                height: 38px;
-                background: #F9FAFB;
-                border: 1px solid #DEDEE0;
-                box-sizing: border-box;
-                border-radius: 5px;
-                margin-bottom: 7%;
-             }
-             .continue {
-                margin-bottom: 7%;
-                background: #349A89;
-                border-radius: 5px;
-                height: 58px;
-                font-family: Helvetica;
-                font-size: 16px;
-                line-height: 18px;
-                text-align: center;
-                letter-spacing: 0.4px;
-                color: #FFFFFF;
-             }
+            margin-top: 10%;
+            padding-top: 7%;
+            margin-bottom: 7%;
+            display: flex;
+            justify-content: center;
+            &__content {
+                margin-bottom: 2%;
+                &__title {
+                   cursor: pointer;
+                   color: #349A89;
+                }
+            }
+          
         }
-    }
-    .register {
-        background: #FFFFFF;
-        box-shadow: 0px 2px 42px rgba(0, 0, 0, 0.111233);
-        border-radius: 7px;
-        margin-top: 10%;
-        padding-top: 7%;
-        padding-bottom: 7%;
-        display: flex;
-        justify-content: center;
-        span {
-            color: #349A89;
-            cursor: pointer;
-        }
+
     }
  
 }

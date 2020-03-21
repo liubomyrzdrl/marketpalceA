@@ -1,10 +1,17 @@
 .register {
     width: inherit;
+    height: 100%;
+    .login__header {
+        height: 20%;
+    }
     &__header {
         margin: 0 auto;
         display: flex;
         justify-content: center;
         width: 1143px;
+    }
+    &__container {
+       height: 65%;
     }
     &__block {
         position: absolute;
@@ -15,6 +22,7 @@
          right: 35.21%;
          top: 12.78%;
          bottom: 13.43%;
+         
          &_title {
              text-align: center;             
              font-family: Helvetica;

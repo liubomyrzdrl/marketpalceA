@@ -35,6 +35,14 @@ logout () {
         window.localStorage.removeItem('___token');
         axios.defaults.headers.common.Authorization = undefined;        
   },
+  register(fullName, email,password) {
+    return axios.post('/auth/register', {
+      fullName,
+      email,
+      password,
+
+    });
+  },
 };
 
 export const Account = {

@@ -7,6 +7,7 @@ import { LatestProductsStore } from './Products/LatestProductsStore';
 import { EntitieStore } from './EntityStore';
 import { ChatStore } from './Chats/ChatStore';
 import { SearchProductsStore } from './Products/SearchProductsStore';
+import { LogMessageStore } from './Auth/LogMessageStore';
 
 
  
@@ -17,6 +18,7 @@ export const RootStore = types.model('RootStore',{
    searchProducts: types.optional(SearchProductsStore,{}),
    entities: types.optional(EntitieStore, {}),
    chats: types.optional(ChatStore, {}),
+   logmessage: types.optional(LogMessageStore,{}) ,
 })
 .actions((store)=>({
    async bootstrap() { 

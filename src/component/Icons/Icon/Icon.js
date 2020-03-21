@@ -1,12 +1,17 @@
 import React from 'react';
-import { serviceIcon } from './serviceIcon'
+import t from 'prop-types';
+import { serviceIcon } from './serviceIcon';
 
 
-const Icon = ({name}) => {
+const Icon = ({ name }) => {
     const IconService = serviceIcon[name];
     return ( 
-        <IconService />
-    )
-}
+      <IconService />
+    );
+};
+
+Icon.propType = {
+    name: t.string,
+};
 
 export default Icon;
