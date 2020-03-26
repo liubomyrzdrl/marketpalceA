@@ -52,8 +52,15 @@ export const Account = {
 };
 
 export const Products = {
-  fetchLatest() {
-    return axios.get('/ap/products/latest');
+  // fetchLatest() {
+  //   return axios.get('/ap/products/latest');
+  // },
+  fetchLatest(limit) {
+    return axios.get(`/ap/products/latest?limit=${limit}`);
+  },
+  fetchLatestPagiantion(id,limit) {
+    console.log(id+' '+limit)
+    return axios.get(`/ap/products/latest?from=${id}&limit=${limit}`);
   },
   getById(id) {
     return axios.get(`/ap/products/${id}`);

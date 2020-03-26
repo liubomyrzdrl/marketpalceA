@@ -1,9 +1,10 @@
+@import  '../../scss//variables';
 .homeWrapper {
-    height: 70%;
+    //  max-height: 70%;
     .homeWrapper__content {
         margin: 0 auto;
         display: flex;
-        width: 60%;
+        width: 55%;
         flex-wrap: wrap;
         justify-content: space-around;
         margin-top: 6%;   
@@ -31,7 +32,8 @@
             &__photo {
                 img {
                     border-radius: 4px 4px 0px 0px;
-                    max-width: 100%;
+                     width: 100%;
+                    max-height: 117px;
                 }
             }
             &__title {
@@ -41,14 +43,34 @@
                 margin-top: 9%;
                 margin-left: 5%;
                 margin-bottom: 7%;
+                color: $black-color;
             }
             &__price {
                 font-family: Helvetica;
                 font-size: 18px;
                 line-height: 21px;
                 margin-left: 5%;
+                color: $black-color;
             }
         }
+
+    }
+    .more { 
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+        width: 60%;
+        justify-content: center;       
+        img {
+         width: 50px;
+         height: 50px;
+         cursor: pointer;
+         align-self: center;
+         margin-bottom: 4%;
+         }
+         img:hover {
+           opacity: 0.7;
+         }
 
     }
 }
