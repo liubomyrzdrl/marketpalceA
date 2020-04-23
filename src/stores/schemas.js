@@ -12,6 +12,7 @@ export const LatestProduct = new schema.Entity('products');
 export const LatestProductCollection = [LatestProduct];
 export const PaginationProductCollection = [LatestProduct];
 export const  OwnProductShema = [LatestProduct];
+export const  FavoriteProductShema = [LatestProduct];
 export const  SearchProductShema = [LatestProduct];
 export const MessageSchema = new schema.Entity('messages');
 export const MessageCollectionSchema = [MessageSchema];

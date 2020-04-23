@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import LoginForm from './components/LoginForm/LoginForm';
 import s from './Login.module.scss';
 import { MAIN } from '../../scss/variables.scss';
- 
 import { useStore } from '../../stores/createStore';
 import { useHistory, Redirect } from 'react-router-dom';
 import { routes } from '../routes';
@@ -13,24 +12,37 @@ import { observer } from 'mobx-react';
 
 export const Login = observer(() => {  
   const[loginError,setLoginError]=useState(false);
-  const store = useStore();
+  const store = useStore(); 
+  const history = useHistory();
  
-const history = useHistory();
+   async function   onSubmit ({ email,password }) {      
+    await store.auth.login.run({ email,password }); 
+   
+      const  serverMessage = store.logmessage.getMessage();              
+        
+        if(serverMessage==='WRONG_PASSWORD') {
+           setLoginError(true);
+        }
+        if(serverMessage==='OK') {
+          const arr = []; 
+          const snapshot = window.localStorage.getItem('favs');     
+
+            if(snapshot) {
+                for(const i in JSON.parse(snapshot).entities.products.collection) {
+                    if(JSON.parse(snapshot).entities.products.collection[i].saved === true ) {
+                        arr.push(+JSON.parse(snapshot).entities.products.collection[i].id);
+                    }   
+                }                
+               
+              store.favorites.addArrayProductsFavorites.run(arr);
+              window.localStorage.removeItem('favs');
+              }
+      
+          setLoginError(false);
+          history.push(routes.home);
+       }
+      }  
  
- function  onSubmit ({ email,password }) {      
-   store.auth.login.run({ email,password });
-    
-    //Get messages from server about 'OK' or 'WRONG'
-    const  serverMessage=store.logmessage.getMessage();       
-       
-      if(serverMessage==='WRONG_PASSWORD') {
-         setLoginError(true);
-      }
-      if(serverMessage==='OK') {
-        setLoginError(false);
-        history.push(routes.home);
-     }
-    }
     function onRegister () {
         console.log('onRegister');
         history.push(routes.register);

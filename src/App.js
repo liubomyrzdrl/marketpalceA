@@ -6,7 +6,7 @@ import Modal from 'react-modal';
 import  Router  from './scenes/routes';
 import s from './App.module.scss';
 import { getSnapshot } from 'mobx-state-tree';
-
+import '@csstools/normalize.css';
 const store = createStore();
 store.bootstrap();
 function App() { 

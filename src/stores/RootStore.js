@@ -8,7 +8,8 @@ import { EntitieStore } from './EntityStore';
 import { ChatStore } from './Chats/ChatStore';
 import { SearchProductsStore } from './Products/SearchProductsStore';
 import { LogMessageStore } from './Auth/LogMessageStore';
-import { LatestProductsPaginationStore } from './Products/LatestProductsPaginationStore';
+import { FavoritesStore } from './Favorites/FavoritesStore';
+
 
 
  
@@ -16,9 +17,9 @@ export const RootStore = types.model('RootStore',{
    auth: types.optional(AuthStore, {}),  
    viewer: types.optional(ViewerStore, {}),
    latestProducts: types.optional(LatestProductsStore, {}),
-   latestProductsPagination: types.optional(LatestProductsPaginationStore, {}),
    searchProducts: types.optional(SearchProductsStore,{}),
    entities: types.optional(EntitieStore, {}),
+   favorites: types.optional(FavoritesStore, {}),
    chats: types.optional(ChatStore, {}),
    logmessage: types.optional(LogMessageStore,{}) ,
 })
@@ -38,9 +39,9 @@ export const RootStore = types.model('RootStore',{
            store.subscribeToEvents();       
        } catch (err) {
          console.log(err);
-         applySnapshot(store,{
+      //    applySnapshot(store,{
 
-       });
+      //  });
        }
     },
     subscribeToEvents() {

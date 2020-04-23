@@ -58,7 +58,7 @@ export function createPersist (store) {
         window.localStorage.setItem('persist',
          JSON.stringify({
              auth: {
-                   isLoggedIn: snapshot.auth.isLoggedIn, 
+                   isLogin: snapshot.auth.isLogin, 
              },
              viewer: {
                  user: snapshot.viewer.user,
@@ -89,6 +89,7 @@ export function createCollection(ofModel, asyncModels = {}) {
             return store.collection.get(String(key));
         },
         getAll() {
+            
             return store.collection.values();
         },
     }))
@@ -105,7 +106,13 @@ export function createCollection(ofModel, asyncModels = {}) {
         },
         update (key,value) {
             this.add(key,value);
-        }  ,     
+        },     
+        isFavorite(id, isFavorite){
+            const item = store.get(id);
+       
+            item.saved = isFavorite;
+            
+        },
     }));
     return types.optional(collection, {});
 };

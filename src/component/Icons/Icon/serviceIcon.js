@@ -40,6 +40,45 @@ export const serviceIcon = {
         );
 
     },
+    oval : () => {
+      return (
+        <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g filter="url(#filter0_d)">
+            <path fillRule="evenodd" clipRule="evenodd" d="M19 32C27.2843 32 34 25.2843 34 17C34 8.71573 27.2843 2 19 2C10.7157 2 4 8.71573 4 17C4 25.2843 10.7157 32 19 32Z" fill="white"/>
+            </g>
+            <defs>
+            <filter id="filter0_d" x="0" y="0" width="38" height="38" filterUnits="userSpaceOnUse" colorInterpolationFilters="sRGB">
+            <feFlood floodOpacity="0" result="BackgroundImageFix"/>
+            <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"/>
+            <feOffset dy="2"/>
+            <feGaussianBlur stdDeviation="2"/>
+            <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.163407 0"/>
+            <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
+            <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
+            </filter>
+            </defs>
+       </svg>
+
+      );
+    },
+    whiteFavotite : () => {
+      return (
+        <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+         <path fillRule="evenodd" clipRule="evenodd" d="M8.5 2.18016C10.5328 0.510101 13.5751 0.613152 15.4836 2.48538C16.4619 3.4443 17 4.72024 17 6.078C17 7.43654 16.4619 8.7117 15.4836 9.67062L9.40693 15.6318C9.15674 15.8773 8.82797 16 8.5 16C8.17203 16 7.84326 15.8773 7.59307 15.6318L1.51637 9.67062C0.538066 8.7117 0 7.43576 0 6.078C0 4.72024 0.538066 3.44509 1.51637 2.48538C3.42566 0.613152 6.46802 0.510888 8.5 2.18016ZM8.72613 14.964L14.8036 9.00276C15.5999 8.2224 16.0377 7.18403 16.0377 6.078C16.0377 4.97276 15.5999 3.9336 14.8036 3.15324C13.159 1.54061 10.4839 1.54061 8.84 3.15324C8.65156 3.33732 8.34684 3.33732 8.1592 3.15324C7.33726 2.34614 6.25712 1.94337 5.17778 1.94337C4.09844 1.94337 3.0183 2.34693 2.19637 3.15324C1.40009 3.93438 0.962264 4.97276 0.962264 6.078C0.962264 7.18324 1.40009 8.22162 2.19637 9.00276L8.27307 14.964C8.39816 15.0867 8.60104 15.0867 8.72613 14.964Z" fill="#B7B7B7"/>
+        </svg>
+
+      );
+    },
+    primaryFavorite : () => {
+      return (
+        <svg width="17" height="15" viewBox="0 0 17 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M15.4836 1.48538C13.5751 -0.386848 10.5328 -0.489899 8.5 1.18016C6.46802 -0.489112 3.42566 -0.386848 1.51637 1.48538C0.538066 2.44509 0 3.72024 0 5.078C0 6.43576 0.538066 7.7117 1.51637 8.67062L7.59307 14.6318C7.84326 14.8773 8.17203 15 8.5 15C8.82797 15 9.15674 14.8773 9.40693 14.6318L15.4836 8.67062C16.4619 7.7117 17 6.43654 17 5.078C17 3.72024 16.4619 2.4443 15.4836 1.48538Z" fill="#349A89"/>
+        </svg>
+        
+        
+        
+      );
+    },
     like: () => {
         return (
           <svg width="20" height="19" viewBox="0 0 20 19" fill="none" xmlns="http://www.w3.org/2000/svg">

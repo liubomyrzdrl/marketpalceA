@@ -1,0 +1,18 @@
+.faivorite {
+    margin-right: -72%;
+    .favoriteContent{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50px;
+        &__oval {
+            position: absolute;
+            z-index: 1;
+            
+        } 
+        &__white {
+            z-index: 2;
+            cursor: pointer;
+        }
+    }
+}

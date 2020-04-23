@@ -4,11 +4,13 @@ import  { normalize } from 'normalizr';
 import { UsersCollection } from './Users/UsersCollections.js';
 import { ChatsCollection } from './Chats/ChatsCollection.js';
 import { MessageCollection } from './Chats/MessageCollection.js';
+import { FavoritesCollection } from './Favorites/FavoritesCollections.js';
 
 export const EntitieStore = types.model('EntitieStore', {
     products: types.optional(ProductCollection, {}),
     users: types.optional( UsersCollection,{}), 
     chats: types.optional(ChatsCollection,{}),
+    favorites: types.optional(FavoritesCollection,{}),
     messages: types.optional(MessageCollection,{}),
 })
 .actions((store) => ({

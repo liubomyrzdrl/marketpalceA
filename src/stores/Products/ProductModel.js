@@ -35,6 +35,7 @@ export const ProductModel = types.model('ProductModel',{
     photos: types.maybeNull(types.array(types.string)),
     location: types.string,
     price: types.number,
+    saved: types.boolean,
     createdAt: types.string,
     updatedAt: types.string,
     // owner: safeReference(types.late(()=>UserModel)) ,

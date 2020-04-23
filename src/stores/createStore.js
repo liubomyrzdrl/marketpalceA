@@ -4,7 +4,8 @@ import { createPersist } from './utils';
 
 export function createStore () {
     const root = RootStore.create();
-  
+     console.log('create Store');
+    //debugger;                  
     const persistor = createPersist(root); 
     persistor.rehydrate();
     return root;

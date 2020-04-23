@@ -1,91 +1,90 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { observer } from 'mobx-react';
-import uuid from 'uuid/v4';
-import { NavLink, generatePath } from 'react-router-dom';
-import Skeleton from 'react-loading-skeleton';
+import { onSnapshot, applySnapshot, getSnapshot } from 'mobx-state-tree';
 import { useStore } from '../../stores/createStore';
-import { routes } from '../routes';
-import { BLACK, TEST } from '../../scss/variables.scss';
 import s from './Home.module.scss';
 import { Loader } from '../../component/Loader/Loader';
- 
+import { Product } from '../../component/Product/Product';
+
 
 const Home = () =>  {
-   const store = useStore(); 
-   const[currentPage, setCurrentPage] = useState(1);  
+   const store = useStore();    
    const limit = 8;
-   const  arrIds = [];
-   const  arrIdsPagination = [];
- 
-   // Add id after first loading page 
-   store.latestProducts.items.map(item => (
-     arrIds.push(item.id)
-   ));
-
-   // Add other loading   
-   store.latestProductsPagination.items.map(item => (
-    arrIdsPagination.push(item.id)
-   ));
-
-    useEffect(() => {   
-         setCurrentPage(1);
-         store.latestProducts.fetchLatest.run(limit );    
-
-    },[store.latestProducts.fetchLatest]);     
+   
+   const ID = store.latestProducts.items[ store.latestProducts.items.length -1];
+     useEffect(() => { 
+           if( store.auth.isLogin === true ){ 
+            const fetchMoreLogin = window.localStorage.getItem('fetchMoreLogin');
+            // const snapshot = window.localStorage.getItem('favs');  
+               if(fetchMoreLogin === limit || !fetchMoreLogin) {
+                //  store.latestProducts.fetchLatest.run(fetchMoreLogin); 
+                store.latestProducts.fetchLatest.run(limit);
+               }else{
+                store.latestProducts.fetchLatest.run(fetchMoreLogin); 
+               }
+             
+           } else {
+            const snapshot = window.localStorage.getItem('favs');
+              if(!snapshot){
+                store.latestProducts.fetchLatest.run(limit);
+              } else {
+                applySnapshot(store,JSON.parse(snapshot));  
+              }
+          }
+        
+      },[]);     
+  
 
     function handleAddMoreProducts () {   
-      if(currentPage===1) { 
-        store.latestProductsPagination.fetchLatest.run(arrIds[arrIds.length-1],limit);   
+      if( store.auth.isLogin === true) {    
+         const fetchMoreLogin = window.localStorage.getItem('fetchMoreLogin');
+        
+        window.localStorage.setItem('fetchMoreLogin',(+fetchMoreLogin+limit) );
+        store.latestProducts.fetchLatestAdditional.run(ID.id,limit);  
       } else {
-        store.latestProductsPagination.fetchLatest.run(arrIdsPagination[arrIdsPagination.length-1],limit); 
-      }
-      setCurrentPage(currentPage+1);       
+        window.localStorage.setItem('fetchMore',ID.id);
+        store.latestProducts.fetchLatestAdditional.run(ID.id,limit);         }
     }
+
+const handleFavorite = id => evt => {
+ 
+  if( store.auth.isLogin === true ){
+ console.log('handleFavorite');
+  } else {
+    onSnapshot(store, (snapshot) => {
+      window.localStorage.setItem('favs',
+      JSON.stringify({  
+        auth: {
+          isLogin: snapshot.auth.isLogin, 
+         },
+    viewer: {
+        user: snapshot.viewer.user,
+    },
+         latestProducts: { 
+          items: snapshot.latestProducts.items,
+        },  
+        entities: {
+          products: {
+            collection: snapshot.entities.products.collection,
+          },
+        },     
+      }));
+    });   
+
+  }
+  
+    };
   return (
     <div className={s.homeWrapper}>  
       <div className={s.homeWrapper__content}>            
-        { store.latestProducts.items.map((item) => {
-            // setArrItems(arrItems.push(item.id));
-            return (
-              <div className={s.product} key={uuid()}>
-                <NavLink className={s.navProd} to={generatePath( routes.product, { productId: item.id } )}>              
-                  <div className={s.product__photo}>
-                    <img alt={item.ownerId} src={item.photos[0]!=='string' ? item.photos[0] : 'new-product.png' || <Skeleton />} /> 
-                  </div>
-                  <div className={s.product__title}> 
-                    {' '}
-                    {item.title|| <Skeleton />}
-                  </div>
-                  <div className={s.product__price}> 
-                    {' '}
-                    {item.price|| <Skeleton />}
-                  </div>
-                </NavLink>  
-              </div>
-            );
-        })}
-        <>
-          { store.latestProductsPagination.items.map((item) => {
-            return (
-              <div className={s.product} key={uuid()}>
-                <NavLink className={s.navProd} to={generatePath( routes.product, { productId: item.id } )}>
-              
-                  <div className={s.product__photo}>
-                    <img alt={item.ownerId} src={item.photos[0]!=='string' ? item.photos[0] : 'new-product.png'} /> 
-                  </div>
-                  <div className={s.product__title}> 
-                    {' '}
-                    {item.title|| <Skeleton />}
-                  </div>
-                  <div className={s.product__price}> 
-                    {' '}
-                    {item.price|| <Skeleton />}
-                  </div>
-                </NavLink>  
-              </div>
-            );
-        })}
-        </>
+        { store.latestProducts.items.map((item) => (
+          <Product 
+            key={item.id}
+            {...item}  
+            onClick={handleFavorite(item.id)}
+          /> 
+           ))}
+       
       </div> 
       <div  
         role='button' 
@@ -94,7 +93,7 @@ const Home = () =>  {
         onKeyDown={handleAddMoreProducts} 
         tabIndex={0}
       >
-        { store.latestProductsPagination.fetchLatest.isLoading ?
+        { store.latestProducts.fetchLatestAdditional.isLoading ?
           <Loader /> : (
             <img src='more.png' alt='the button to add more products' />
         )}       

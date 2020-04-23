@@ -1,4 +1,5 @@
 @import './scss/nullstyle.scss';
+@import '../node_modules/normalize.css/normalize.css';
 
 body {
     background-color: #F2F2F2;
@@ -8,8 +9,7 @@ body {
     display: flex;
     justify-content: center;
     max-width: 1920px;
-    flex-direction: column;
-    
+    flex-direction: column;    
     height : 100vh;
 }
 

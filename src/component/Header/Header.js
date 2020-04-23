@@ -85,10 +85,11 @@ const Header = observer(({ color, name, colorFont }) => {
            </div>   
            {!store.auth.isLogin ? (
              <LoginButton colorFont={colorFont} onClick={navigateToLogin} />
-              ) : <UserInfo />
-           }
+              ) : <UserInfo />}
            <div className={s.likeIcon}>
-              <Icon name={'likeWhite'}/>
+             <NavLink to={routes.faivorites}>
+               <Icon name='likeWhite' />
+             </NavLink>
            </div>                  
          </div>
         

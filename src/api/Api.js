@@ -15,14 +15,7 @@ export const Auth = {
 isLoggedIn() {
  return !!this._token;
 },
-get() {
-    axios.get('/ap/products/latest')
-    .then((response)=>{
-          console.log(response);
-       return   response;
-           })
-    .then(data => console.log(data.data));   
-},
+
  
 login({ email, password }) {
     return axios.post('/ap/auth/login', {
@@ -58,20 +51,51 @@ export const Products = {
   fetchLatest(limit) {
     return axios.get(`/ap/products/latest?limit=${limit}`);
   },
-  fetchLatestPagiantion(id,limit) {
-    console.log(id+' '+limit)
+
+  fetchLatestPagiantion(id,limit) {    
     return axios.get(`/ap/products/latest?from=${id}&limit=${limit}`);
   },
+
   getById(id) {
     return axios.get(`/ap/products/${id}`);
   },
+
   byUserId(id) {
     return axios.get(`/ap/users/${id}/products`);
   },
+
   getProductsSearch(text){
     return axios.get(`/ap/products/search?keywords=${text}`);
   },
+
+  addProductToFavorites (id) {
+   const res=  axios.post(`/ap/products/${id}/saved`);
+   return res;
+  },
+
+  deleteProductFromFavorites (id) {
+    const res = axios.delete(`/ap/products/${id}/saved`);
+    return res;
+   },
+
+   getArrayProductsFavorites () {
+     return axios.get('ap/products/saved',);
+  }, 
+  addArrayProductsFavorites (arg) {
+   const res = axios.post('/ap​/products/saved',{       
+      data: {
+        ids: arg,   
+      },         
+   },);
+    return res;
+ }, 
+ arrayToDataBase(arg) {
+  return axios.post('/ap/products/saved',{
+    ids: arg, 
+  });
+},
  };
+
 
  export const Users = {
    getById(id){
@@ -97,3 +121,5 @@ export const Products = {
     return axios.get(`/ap/chats/${id}/messages`);
   },
  };
+
+ 

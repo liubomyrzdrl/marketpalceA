@@ -1,0 +1,14 @@
+main {
+    height: 100%;
+    .faivoritesblock {
+        display: flex;
+        justify-content: space-around;
+        margin: 0 auto;
+        align-items: center;
+        flex-wrap: wrap;
+        width: 50%;
+        height: 60%;
+        margin-top: 5%;
+        
+    }
+}
