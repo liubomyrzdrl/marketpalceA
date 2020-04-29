@@ -39,9 +39,9 @@ export const RootStore = types.model('RootStore',{
            store.subscribeToEvents();       
        } catch (err) {
          console.log(err);
-      //    applySnapshot(store,{
+         applySnapshot(store,{
 
-      //  });
+       });
        }
     },
     subscribeToEvents() {

@@ -19,6 +19,7 @@ export const AuthStore = types.model('AuthStore', {
         store.isLogin = false;
         Auth.logout();
         window.localStorage.removeItem('fetchMoreLogin');
+        window.localStorage.removeItem('favs');
     },
     setisRegister(value){
         store.isRegister = value;
