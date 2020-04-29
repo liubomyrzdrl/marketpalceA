@@ -44,60 +44,39 @@ const MessageList = observer(() => {
                
           
           return (
-            <div className={s.messageContent}>
-         
-              <div 
-                key={key}  
-                className={chat.messages.asList[index].ownerId === ownerId ? s.messageContent__itemOwn : s.messageContent__itemCustomer}
-              >              
-                {  chat.messages.asList[index].text }
+            <div className={chat.messages.asList[index].ownerId === ownerId ? s.messageContentOwn : s.messageContentCustomer}>         
+                    
+              <div className={s.messageContent__item}> 
+                <span> { chat.messages.asList[index].text }</span>
               </div>
-
-              <div className={chat.messages.asList[index].ownerId === ownerId ? s.timeMessageAgoOwn : s.timeMessageAgoCustomer}>
+              <div className={s.timeMessage}>
                 {new Date().getDay() - new Date(chat.messages.asList[index].createdAt).getDay() > 0 && ( 
-                <div className={s.messageContent__inf}>           
+                  <div className={s.message__inf}>           
                   
-                  {new Date().getDay() - new Date(chat.messages.asList[index].createdAt).getDay()}
-                  day
-                </div>
+                    {new Date().getDay() - new Date(chat.messages.asList[index].createdAt).getDay()}
+                    day
+                  </div>
 )}
-                {new Date().getHours() - new Date(chat.messages.asList[index].createdAt).getHours() >0 && (
-                <div  className={s.messageContent__inf}>
-                  {' '}
-                  {new Date().getHours() - new Date(chat.messages.asList[index].createdAt).getHours()}
-                  hour 
-                </div>
+                {new Date().getHours() - new Date(chat.messages.asList[index].createdAt).getHours() > 0 && (
+                  <div className={s.message__inf}>
+                    {' '}
+                    {new Date().getHours() - new Date(chat.messages.asList[index].createdAt).getHours()}
+                    hour 
+                  </div>
 )}
-                {new Date().getMinutes() - new Date(chat.messages.asList[index].createdAt).getMinutes() >0 && (
-                <div  className={s.messageContent__inf}>
-                  {new Date().getMinutes() - new Date(chat.messages.asList[index].createdAt).getMinutes()}
-                  min
-                </div >
+                {new Date().getMinutes() - new Date(chat.messages.asList[index].createdAt).getMinutes() > 0 && (
+                  <div className={s.message__inf}>
+                    {new Date().getMinutes() - new Date(chat.messages.asList[index].createdAt).getMinutes()}
+                    min
+                  </div>
 )}
-                <div  className={s.messageContent__inf}>ago</div>
-              </div>
-                  
-             </div>
-           
+                <div className={s.message__inf}>ago</div>
+              </div>              
+            </div>           
            );
-        }
-  
-
-  
+        }  
     return (
       <div>      
-        {/* <ul className={s.messageContent}>
-          {chat.messages.asList.map((item) =>  {        
-            return (
-              <li 
-                className={item.ownerId === ownerId ? s.messageContent__itemOwn : s.messageContent__itemCustomer} 
-                key={item.id}
-              >               
-                { item.text }                
-              </li>
-                );  
-              })}
-        </ul> */}
         <div className={s.list}> 
           <AutoSizer>
             { ({ width,height }) => {
@@ -110,7 +89,7 @@ const MessageList = observer(() => {
                  rowRenderer={rowRenderer}
                  overscanRowCount={1}
                />
-);
+             );
            }}
           </AutoSizer>
         </div>

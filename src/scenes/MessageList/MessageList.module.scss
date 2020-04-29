@@ -20,23 +20,40 @@
        background-color: $primary;
     }
 }
-.messageContent {
+.messageContentCustomer {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    &__item{
-       color: green;
-       display: flex;
-       flex-direction: column;
-
+    
+    justify-content: initial;
+    width: 20%;
+    align-items: end;
+     .messageContent__item {
+        color: $white-color;
+        background-color: $primary;
+        width: 182.78px;
+        height: 38.52px;
+        margin-top: 5%;
+        margin-bottom: 1%;
+        margin-left: 5%;
+        border-radius: 5% 5% 5%  5%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
-  
-    &__inf {        
-        padding-left: 4%;
+}
+.messageContentOwn {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    
+    justify-content: initial;
+    width: 20%;
+    align-items: end;
+    margin-left: 68%;   
     }
-    &__itemOwn {
-        background: #FFFFFF;
-        //transform: matrix(-1, 0, 0, 1, 0, 0);
+    .messageContent__item {
+        background: #FFFFFF;        
         width: 266.31px;
         height: 56.49px;
         width: 242px;
@@ -45,39 +62,19 @@
         margin-left: 68%;
         align-items: center;
         margin-top: 5%;
+        span {
+            padding-left: 4%;
+        }
     }
-    &__itemCustomer {
-        color: $white-color;
-        background-color: $primary;
-        width: 182.78px;
-        height: 38.52px;
-        margin-top: 5%;
-        margin-bottom: 1%;
-        margin-left: 5%;
-        border-radius: 25% 25%;
+    .timeMessage {
         display: flex;
-        justify-content: center;
-        align-items: center;
+        opacity: 0.3;
+        margin-right: 4%;
+        .message__inf {        
+          margin-left: 2%;
+       }
     }
-}
-.timeMessageAgoOwn {
-    opacity: 0.6;
-    display: flex;
-    // justify-content: space-between;
-    background-color: red;
-    width:  10vh;
-    // margin-left: 84%;
-    margin-left:  30vw ;
- 
-}   
-.timeMessageAgoCustomer {
-    opacity: 0.3;
-    display: flex;
-    // justify-content: space-between;
-    width: 10vh;   
-    margin-left: 14%;
-}   
-
+   
 
 .list {
     height: calc(80vh - 210px);   

@@ -5,8 +5,10 @@
     
     aside {
         padding-left: 24px;
+        width: 48%;
         .inboxItem {             
-            width: 566px;
+           // width: 566px;
+           width: inherit;
             display: flex;
             // justify-content: space-between;
             background: #FFFFFF;
