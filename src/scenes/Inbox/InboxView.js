@@ -1,30 +1,49 @@
 import React, { useEffect } from 'react';
 import { observer } from 'mobx-react';
-import { Link, generatePath, Route } from 'react-router-dom';
+import {
+ Link, generatePath, Route, useParams, 
+} from 'react-router-dom';
 import { useStore } from '../../stores/createStore';
 import { routes } from '../routes';
 import MessageList from '../MessageList/MessageList';
 import s from './InboxView.module.scss';
+import Icon from '../../component/Icons/Icon/Icon';
  
 
 const  InboxView =  observer(() =>  {
+    const store = useStore();
     const chats = useStore((store) => store.chats);
     const selectedChat = window.location.pathname.slice(7);
-    console.log(selectedChat);
-     
+    const chatMessageId = store.chats.messageIdListen;  
+ 
+    const chatId = window.location.pathname.slice(7);
+
     useEffect(() => {
         chats.fetch.run();
        
     },[chats.fetch]);
 
+    function handleMessageIdListener() {
+      console.log(chatMessageId);
+      if(chatMessageId !== ' ') {
+        chats.setMessageListener('');
+   
+    
+      }
+    }
+
     return (
       <div className={s.inbox}>  
         
         <aside>
+         
           {chats.items.map(item => (
             <Link to={generatePath( routes.chat,{ chatId: item.id } )} key={item.id}> 
            
-              <div className={s.inboxItem}>
+              <div 
+                className={s.inboxItem}
+                onClick={handleMessageIdListener}
+              >             
                 <div 
                   className={s.inboxItem__focusedLabel} 
                   style={item.id === +selectedChat ? { backgroundColor: 'green', width: '3px' } : null}
@@ -43,7 +62,8 @@ const  InboxView =  observer(() =>  {
                   <img src={item.product.photos[0]} />
                   <div className={s.inboxItem__product_context}>
                     <div className={s.inboxItem__product_title}>
-                      {item.product.title}{item.id}
+                      {item.product.title}
+                      {item.id}
                     </div>
                     <div className={s.inboxItem__product_price}>
                       {item.product.price}
@@ -55,7 +75,13 @@ const  InboxView =  observer(() =>  {
             
                   {/* { new Date().now()} */}
                 </div>
-              
+                <div  className={s.badge}>
+                  { +chatId !== item.id && chatMessageId !=='' && +chatMessageId === item.id &&  (
+                    // <div className={s.badge}>New Message</div>
+                    <Icon name="message" />
+                  )}
+
+                </div>
               </div>
             </Link>
         ))}

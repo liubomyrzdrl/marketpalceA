@@ -1,7 +1,6 @@
 import { types, applySnapshot } from 'mobx-state-tree';
 import  { AuthStore } from '../stores/Auth/AuthStore';
 import { ViewerStore } from '../stores/ViewerStore';
-
 import Api, { SocketApi }   from '../api';
 import { LatestProductsStore } from './Products/LatestProductsStore';
 import { EntitieStore } from './EntityStore';
@@ -9,6 +8,7 @@ import { ChatStore } from './Chats/ChatStore';
 import { SearchProductsStore } from './Products/SearchProductsStore';
 import { LogMessageStore } from './Auth/LogMessageStore';
 import { FavoritesStore } from './Favorites/FavoritesStore';
+
 
 
 
@@ -21,7 +21,8 @@ export const RootStore = types.model('RootStore',{
    entities: types.optional(EntitieStore, {}),
    favorites: types.optional(FavoritesStore, {}),
    chats: types.optional(ChatStore, {}),
-   logmessage: types.optional(LogMessageStore,{}) ,
+   logmessage: types.optional(LogMessageStore,{}),
+
 })
 .actions((store)=>({
    async bootstrap() { 
@@ -48,7 +49,8 @@ export const RootStore = types.model('RootStore',{
         SocketApi.handleMessages(message => {        
           console.log('MESSAGE');
           console.log(message);
-         store.chats.handleMessage(message);          
+         store.chats.handleMessage(message);      
+        //  store.messageListener.setMessage(message.chatId); 
         });
       },
 }));

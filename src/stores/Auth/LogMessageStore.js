@@ -1,6 +1,6 @@
 import React from 'react';
 import { types } from 'mobx-state-tree';
-import { ServerMessage } from './ServerMessage';
+
 
 export const LogMessageStore = types.model('LogMessageStore',{
     message: types.optional(types.string,''),

@@ -19,10 +19,10 @@ export const MessagesStore = types.model('MessagesStore', {
 }))
 .actions(store => ({
     addMessage(message) {
-        const result = getRoot(store).entities.normalize(message, MessageSchema);
+        const result = getRoot(store).entities.normalize(message, MessageSchema);       
         store.items.unshift(result);
+       
     },
-  
     runInAction(cb) {
         cb(store);
     },
@@ -30,7 +30,7 @@ export const MessagesStore = types.model('MessagesStore', {
 
 
 function fetchMessages () {
-    return async function fetchMessagesFlow (flow, store) {       
+    return async function fetchMessagesFlow (flow, store, Root) {       
         const res = await Api.Chats.getMessages(store.chatId);
          console.log(res.data);
        const result = flow.merge(res.data, MessageCollectionSchema);

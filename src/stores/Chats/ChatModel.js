@@ -1,9 +1,9 @@
-import { types, getRoot } from "mobx-state-tree";
+import { types } from "mobx-state-tree";
 import { ProductModel } from "../Products/ProductModel";
 import { UserModel } from "../Users/UserModel";
 import { MessageModel } from "./MessageModel";
 import Api from "../../api";
-import { MessageCollectionSchema, MessageSchema } from "../schemas";
+import { MessageCollectionSchema } from "../schemas";
 import { asyncModel } from "../utils";
 import { MessagesStore } from "./MessagesStore";
 
@@ -43,12 +43,12 @@ export const ChatModel = types.model('Chat',{
             console.log(res.data);
      
             //    debugger;
-            store.messages.addMessage(res.data);
-            const result  = flow.merge(res.data, MessageCollectionSchema);
+           store.messages.addMessage(res.data);
+          const result  = flow.merge(res.data, MessageCollectionSchema);
                
                
              console.log('result');
-             console.log(result);
+              console.log(result);
      
         
            
