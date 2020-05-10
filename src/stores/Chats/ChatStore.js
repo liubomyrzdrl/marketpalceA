@@ -9,7 +9,7 @@ import { useStore } from "../createStore";
 
  export const ChatStore = types.model('Chat', {
     items: types.array(types.reference(ChatModel)),
-    messageIdListen:  types.optional(types.string,''),
+    messageIdListen:  types.array(types.string),
     fetch: asyncModel(fetchChats),
  })
  .views(store => ({
@@ -34,7 +34,18 @@ import { useStore } from "../createStore";
         }         
     },
     setMessageListener(message) {
-     store.messageIdListen = message;
+       
+            store.messageIdListen = [...store.messageIdListen, message];
+
+    },
+    clearMessageListener(message) {
+        console.log(message)     
+      if (message !== 'undefined') {
+        store.messageIdListen  = store.messageIdListen.filter(item => item !== message);
+         
+              }
+
+     
     },
  }));
 

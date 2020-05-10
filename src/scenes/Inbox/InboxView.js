@@ -15,19 +15,20 @@ const  InboxView =  observer(() =>  {
     const chats = useStore((store) => store.chats);
     const selectedChat = window.location.pathname.slice(7);
     const chatMessageId = store.chats.messageIdListen;  
- 
     const chatId = window.location.pathname.slice(7);
-
+    
+    console.log(typeof chatMessageId[0]=== 'undefined');
     useEffect(() => {
         chats.fetch.run();
        
     },[chats.fetch]);
+    
+   
 
     function handleMessageIdListener() {
-      console.log(chatMessageId);
-      if(chatMessageId !== ' ') {
-        chats.setMessageListener('');
-   
+      console.log(chatId);
+      if(chatMessageId[0] === chatId) {
+        chats.clearMessageListener(chatMessageId[0]);  
     
       }
     }
@@ -48,6 +49,7 @@ const  InboxView =  observer(() =>  {
                   className={s.inboxItem__focusedLabel} 
                   style={item.id === +selectedChat ? { backgroundColor: 'green', width: '3px' } : null}
                 />   
+                
 
                 <div className={s.inboxItem__user}>                
                   <div className={s.inboxItem__user_fullName}>
@@ -69,19 +71,21 @@ const  InboxView =  observer(() =>  {
                       {item.product.price}
                     </div>
                   </div>
-                </div>
-
-                <div className={s.inboxItem__time}>
+                  <div className={s.badge}>        
+               
             
-                  {/* { new Date().now()} */}
+                    {  (chatMessageId.length > 0 && +chatMessageId[0] === item.id && +chatId !== item.id )  && (
+                    <div>
+                      <Icon name="message" />
+                      <div style={{ color: 'red' }}>{chatMessageId.length}</div>
+                
+                    </div>
+   )    }
+                     
+                  </div>
                 </div>
-                <div  className={s.badge}>
-                  { +chatId !== item.id && chatMessageId !=='' && +chatMessageId === item.id &&  (
-                    // <div className={s.badge}>New Message</div>
-                    <Icon name="message" />
-                  )}
 
-                </div>
+         
               </div>
             </Link>
         ))}
@@ -96,3 +100,11 @@ const  InboxView =  observer(() =>  {
 });
 
 export default InboxView;
+
+ 
+
+//     +chatId !== item.id  && chatMessageId[0] !==''&& 
+
+// typeof chatMessageId[0] !== 'undefined'
+
+// +chatMessageId[0] === item.id

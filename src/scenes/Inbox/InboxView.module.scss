@@ -7,11 +7,11 @@
         // padding-left: 24px;
         padding-left: 1%;
         width: 48%;
-        .badge {
-            position: absolute;
-            right: 66.5%;
-            top: 21%;
-        }
+        // .badge {
+        //     position: absolute;
+        //     right: 66.5%;
+        //     top: 21%;
+        // }
         .inboxItem {             
            // width: 566px;
            width: inherit;
@@ -32,6 +32,12 @@
             &__product{
                 display: flex;
                 transform: translateY(25%);
+                width: 60%;
+                justify-content: space-around;
+                .badge {
+                    margin-top: -10%;
+                    margin-right: -13%;
+                }
                 img {
                     height: 47px;
                     width: 47px;
