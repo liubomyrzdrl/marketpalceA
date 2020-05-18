@@ -12,6 +12,7 @@ import { MAIN } from '../../scss/variables.scss';
 import SimpleHeader from '../../component/Header/SimpleHeader';
 import { Footer } from '../../component/Footer/Footer';
 import { useStore } from '../../stores/createStore';
+import Api from '../../api';
  
 
 const Register = observer(() => {
@@ -35,24 +36,45 @@ const Register = observer(() => {
       history.push(routes.login);
   };
 
-  const onSubmit = () => {
+ async function  onSubmit  ({ fullName, email, password }) {
     console.log('Register');
-    const serverMessage = store.logmessage.getMessage();
-    if(serverMessage==='WRONG_PASSWORD') {
-      setRegisterError(true);
-   }
-   if(serverMessage==='OK') {
-     //When registration is succsees 
-     //Open modal window 
-     setRegisterError(false);
-     setModalIsOpen(true);
-     //After 4 sec modal will be closed and will be redirection to the login form 
-     setTimeout(()=> {
-      setModalIsOpen(false);
-      history.push(routes.login);
-     },4000);
-  }
-    // history.push(routes.home);
+
+    try {
+     const resToken = await Api.Auth.register({ fullName, email, password });
+     Api.Auth.setToken(resToken.token);
+     const productForCreate = localStorage.getItem('productForCreate');
+     if (productForCreate) {
+       const product = JSON.parse(productForCreate); 
+       console.log(product.arrImageURL);
+       localStorage.removeItem('productForCreate');
+       try {
+         Api.Products.createNewProduct(product.title, product.description, product.arrImageURL, product.location, product.price);
+       } catch(err) {
+          console.log(err);
+       }    
+      }
+      
+    } catch(err) {
+      console.log(err);
+    }
+
+
+  //   const serverMessage = store.logmessage.getMessage();
+  //   if(serverMessage === 'WRONG_PASSWORD') {
+  //     setRegisterError(true);
+  //  }
+  //  if(serverMessage === 'OK') {
+  //    //When registration is succsees 
+  //    //Open modal window 
+  //    setRegisterError(false);
+  //    setModalIsOpen(true);
+  //    //After 4 sec modal will be closed and will be redirection to the login form 
+  //    setTimeout(()=> {
+  //     setModalIsOpen(false);
+  //     history.push(routes.login);
+  //    },4000);
+  // }
+    history.push(routes.home);
   };
 
   function afterOpenModal() {

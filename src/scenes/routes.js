@@ -5,15 +5,16 @@ import { Login } from './Login/Login';
 import { ProductSearch } from './ProductSearch/ProductSearch';
 import Register from './Register/Register';
 import { ProductFaivorites } from './ProductFaivorites/ProductFaivorites';
+import { AddProduct } from '../component/Product/AddProduct/AddProduct';
 
 
 export const routes = {
     home: '/',
     login: '/auth/login',
     register: '/auth/register',
-    auth: '/auth',
-    
-    product: '/products/:productId',    
+    auth: '/auth',    
+    product: '/products/:productId', 
+    newProduct: '/prod/new',
     searchProd: '/search/:text',
     users: '/users/:userId',
     // inbox: '/inbox/:chatId',
@@ -32,6 +33,7 @@ function Router() {
         <Route path={routes.register} component={Register} /> 
         <Route path={routes.searchProd} component={ProductSearch} />
         <Route path={routes.faivorites} component={ProductFaivorites} />
+        <Route path={routes.newProduct} component={AddProduct} />
         <Route exact component={Main} />         
       </Switch>
     </BrowserRouter>

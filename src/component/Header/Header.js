@@ -64,12 +64,40 @@ const UserInfo = observer(() => {
   );
 });
 
+const customStyles = {
+  content : {
+    top                   : '50%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)',
+  
+  }
+};
+
 const Header = observer(({ color, name, colorFont }) => {
+  const [isOpen, setIsOpen] = useState(false);
   const  history  = useHistory();
   const store = useStore();
+
   function navigateToLogin () {
     history.push(routes.login);    
   }
+
+  function handleOpen() {
+    if(store.auth.isLogin === true) {
+      setIsOpen(true);
+      window.localStorage.setItem('modalAddProduct', true);
+    } else {
+      history.push(routes.login);
+    }
+
+  }
+   function handleClose() {
+    setIsOpen(false);
+    window.localStorage.removeItem('modalAddProduct');
+   }
      return (
        <header className={s.container} style={{ backgroundColor: color }}>
          <NavLink to={routes.home} className={s.iconHome}>
@@ -80,9 +108,17 @@ const Header = observer(({ color, name, colorFont }) => {
            <NavLink to={routes.inbox} className={s.right__chat}>
              <Icon name='chat' />
            </NavLink>  
-           <div className={s.sellButton}>
+           <div className={s.sellButton} onClick={handleOpen}>
              <button type="button">SELL</button>
            </div>   
+           <Modal
+             isOpen={isOpen}
+             onRequestClose={handleClose}
+             style={customStyles}
+             
+           >
+             <div>Sell Modal</div>
+           </Modal>
            {!store.auth.isLogin ? (
              <LoginButton colorFont={colorFont} onClick={navigateToLogin} />
               ) : <UserInfo />}

@@ -9,6 +9,8 @@ import { getSnapshot } from 'mobx-state-tree';
 import '@csstools/normalize.css';
 const store = createStore();
 store.bootstrap();
+
+
 function App() { 
  
  console.log(getSnapshot(store));

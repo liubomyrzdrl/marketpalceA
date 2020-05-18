@@ -28,12 +28,11 @@ logout () {
         window.localStorage.removeItem('___token');
         axios.defaults.headers.common.Authorization = undefined;        
   },
-  register(fullName, email,password) {
-    return axios.post('/auth/register', {
+  register({ fullName, email, password }) {
+    return axios.post('/ap/auth/register', {
       fullName,
       email,
       password,
-
     });
   },
 };
@@ -48,6 +47,16 @@ export const Products = {
   // fetchLatest() {
   //   return axios.get('/ap/products/latest');
   // },
+  createNewProduct(title, description, photos, location, price) {
+    return axios.post('/ap/products',{
+      title,
+      description,
+      photos,
+      location,
+      price,
+    });
+  },
+
   fetchLatest(limit) {
     return axios.get(`/ap/products/latest?limit=${limit}`);
   },
@@ -81,6 +90,7 @@ export const Products = {
    getArrayProductsFavorites () {
      return axios.get('ap/products/saved',);
   }, 
+
   addArrayProductsFavorites (arg) {
    const res = axios.post('/ap​/products/saved',{       
       data: {
@@ -89,6 +99,7 @@ export const Products = {
    },);
     return res;
  }, 
+
  arrayToDataBase(arg) {
   return axios.post('/ap/products/saved',{
     ids: arg, 
@@ -122,4 +133,3 @@ export const Products = {
   },
  };
 
- 

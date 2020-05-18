@@ -8,7 +8,8 @@ import { ChatStore } from './Chats/ChatStore';
 import { SearchProductsStore } from './Products/SearchProductsStore';
 import { LogMessageStore } from './Auth/LogMessageStore';
 import { FavoritesStore } from './Favorites/FavoritesStore';
-
+import { useHistory } from 'react-router-dom';
+import { routes } from '../scenes/routes';
 
 
 
@@ -37,7 +38,9 @@ export const RootStore = types.model('RootStore',{
            const res= await Api.Account.getUser(); 
            store.viewer.setViewer(res.data);       
            store.auth.setIsLoggedIn(true);    
-           store.subscribeToEvents();       
+           store.subscribeToEvents();     
+          
+         
        } catch (err) {
          console.log(err);
          applySnapshot(store,{

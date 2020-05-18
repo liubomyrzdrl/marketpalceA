@@ -5,11 +5,18 @@ const proxy = createProxy({
    target: 'https://apiko-intensive-backend.herokuapp.com/',
    
     pathRewrite: {
-        '^/ap': '',
+        '^/ap': '',        
     },
     changeOrigin: true,
 });
-
+const proxyImage = createProxy({
+    target: 'https://api.imgbb.com/1/upload/',
+    
+     pathRewrite: {
+         '^/up': '',         
+     },
+     changeOrigin: true,
+ });
 const wsProxy = createProxy({
     target: 'https://apiko-intensive-backend.herokuapp.com/',
     
@@ -22,5 +29,6 @@ const wsProxy = createProxy({
 
 module.exports = (app) => {   
     app.use('/ap', proxy);
+    app.use('/up', proxyImage);
     app.use('/socket.io', wsProxy);
 };

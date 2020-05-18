@@ -20,7 +20,11 @@ export function Product ({
      <div className={s.product} key={uuid()}>
               
        <div className={s.product__photo}>
-         <img alt={ownerId} src={photos[0]!=='string' ? photos[0] : 'new-product.png' || <Skeleton />} /> 
+         {console.log(photos)}
+         <img 
+           alt={ownerId} 
+           src={photos=== null ? 'new-product.png' : photos[0]} 
+         /> 
        </div>
        <Faivorite onClick={onClick} id={id} saved={saved} />
        <NavLink 
@@ -43,7 +47,7 @@ export function Product ({
 Product.propTypes  = {
   id: T.number,
   ownerId: T.number, 
-  photos: T.string, 
+  photos: T.array, 
   title: T.string,   
   price: T.number, 
   saved: T.bool,                       

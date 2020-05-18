@@ -5,11 +5,20 @@ import { useStore } from '../../stores/createStore';
 import s from './Home.module.scss';
 import { Loader } from '../../component/Loader/Loader';
 import { Product } from '../../component/Product/Product';
+import { routes } from '../routes';
+import { useHistory } from 'react-router-dom';
 
 
 const Home = () =>  {
    const store = useStore();    
    const limit = 8;
+   const history = useHistory();
+   const modalAddProduct  = window.localStorage.getItem('modalAddProduct');
+
+
+   if (modalAddProduct === 'true') {            
+      history.push(routes.newProduct);
+   }
    
    const ID = store.latestProducts.items[ store.latestProducts.items.length -1];
      useEffect(() => { 

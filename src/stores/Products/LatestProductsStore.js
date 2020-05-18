@@ -12,7 +12,7 @@ function fetchLatest(limit ){
         const favStorage = window.localStorage.getItem('favs');
         const f = JSON.parse(favStorage);  
    
-        console.log(f);
+        console.log(res.data);
         
         const ids =  flow.merge(res.data, LatestProductCollection);         
         store.setItems(ids);
