@@ -42,7 +42,6 @@ function onSwitch (e) {
         <div className={s.favoriteContent} onClick={() => { onClick(); onSwitch();}}>
           <div className={s.favoriteContent__oval}>
             <Icon name="oval"   />
-          </div>
           {!isFavorite ? (
             <div className={s.favoriteContent__white}>
               <Icon name="whiteFavotite" />
@@ -52,6 +51,7 @@ function onSwitch (e) {
              <Icon name="primaryFavorite" />
            </div>
            )} 
+          </div>
         </div>             
       </div>
         

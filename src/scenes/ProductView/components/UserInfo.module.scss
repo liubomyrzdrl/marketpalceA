@@ -1,0 +1,64 @@
+@import '../../../scss/variables.scss';
+
+.container {
+    margin-top: 2%;
+    margin-left: 2%;
+    .owner {
+        width: 259px;
+        // height: 146px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: $white-color;
+        &__topblock {
+            width: 100%;
+            height: 50px;
+            background-color: $primary;        
+        }
+        
+        &__avatar {
+            width: 72px;
+            height: 72px;
+            position: absolute;
+            top: 25%;
+            
+            img {
+                width: 100%;
+                height: 100%;
+                border-radius: 50px;
+            }
+        }
+        &__fullname {
+            font-family: Helvetica;
+            font-size: 15px;
+            line-height: 17px;
+            margin-top: 118%;            
+            color: #2B2B2B;            
+        }
+        &__location {
+            font-family: Helvetica;
+            font-size: 15px;
+            line-height: 17px;
+            color: rgba(43, 43, 43, 0.499918);  
+            margin-top: 3%;     
+            margin-bottom: 30%;
+        }
+    }
+    button {
+        background: #349A89;
+        border-radius: 4px;   
+        width: 259px;
+        height: 47px;
+        margin-top: 18px;
+        color: $white-color;
+        font-family: Helvetica;
+        font-size: 14px;
+        line-height: 31px; 
+        text-transform: uppercase;
+    }
+    .modalcontainer {
+        background-color: red;
+    }
+}
+

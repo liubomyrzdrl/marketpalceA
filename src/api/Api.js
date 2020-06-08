@@ -41,6 +41,16 @@ export const Account = {
   getUser() {
         return axios.get('/ap/account');
   },
+  
+  updateUser(fullName, avatar, phone, location) {
+    return axios.put('/ap/account', {
+        fullName,
+        avatar,
+        phone,
+        location,
+    });
+  },
+
 };
 
 export const Products = {
@@ -57,6 +67,7 @@ export const Products = {
     });
   },
 
+  
   fetchLatest(limit) {
     return axios.get(`/ap/products/latest?limit=${limit}`);
   },

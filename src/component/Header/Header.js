@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useHistory , NavLink } from 'react-router-dom'; 
+import { useHistory , NavLink, Link } from 'react-router-dom'; 
 import t from 'prop-types';
 
 import { observer } from 'mobx-react';
@@ -10,6 +10,8 @@ import { routes } from '../../scenes/routes';
 import { useStore } from '../../stores/createStore';
 import { InputSearch } from './components/Logo/InputSearch';
 import { LoginButton } from './components/Logo/LoginButton';
+import { AddProduct } from '../Product/AddProduct/AddProduct';
+import { ProductForm } from '../Product/component/ProductForm';
  
 
 const UserInfo = observer(() => {
@@ -17,7 +19,7 @@ const UserInfo = observer(() => {
   const node = useRef();
   const store = useStore();
   useEffect(()=>{
-      document.addEventListener('mousedown',handleClick);
+      document.addEventListener('mousedown', handleClick);
     return () => {
       document.removeEventListener('mousedown', handleClick);
     };
@@ -53,7 +55,7 @@ const UserInfo = observer(() => {
           </div>
         
           <div className={s.editeProfile}>
-            edite profile
+            <Link to={routes.editeProfile}>edite profile</Link>            
           </div>
           <div className={s.buttonLogout} onClick={store.auth.logout}>
             logout
@@ -99,7 +101,7 @@ const Header = observer(({ color, name, colorFont }) => {
     window.localStorage.removeItem('modalAddProduct');
    }
      return (
-       <header className={s.container} style={{ backgroundColor: color }}>
+       <header className={s.container} style={{ background: color }}>
          <NavLink to={routes.home} className={s.iconHome}>
            <Icon name={name} />
          </NavLink>  
@@ -118,6 +120,7 @@ const Header = observer(({ color, name, colorFont }) => {
              
            >
              <div>Sell Modal</div>
+             <ProductForm />
            </Modal>
            {!store.auth.isLogin ? (
              <LoginButton colorFont={colorFont} onClick={navigateToLogin} />
@@ -128,8 +131,6 @@ const Header = observer(({ color, name, colorFont }) => {
              </NavLink>
            </div>                  
          </div>
-        
- 
        </header>
     );
 });

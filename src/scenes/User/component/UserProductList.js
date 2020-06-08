@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react'; 
 import { observer } from 'mobx-react';
-import { UsersCollection, useUsersCollecction } from '../../../stores/Users/UsersCollections';
-import uuid from 'uuid/v4';
+import s from './UserProductList.module.scss';
+import { Product } from '../../../component/Product/Product';
 
 export const  UserProductList = observer(({ userProduct }) => { 
-const coll = useUsersCollecction();
+
     useEffect(() =>{
         userProduct.ownProducts.fetch.run();
         // debugger;
-    }, []);
+    }, [userProduct.ownProducts.fetch]);
 
     
     if(userProduct.ownProducts.fetch.isLoading ) {    
@@ -16,18 +16,12 @@ const coll = useUsersCollecction();
       } 
     
     return (
-      <>
-        <div> Product List </div>
-        {}
+      <div className={s.container}>      
         {userProduct.ownProducts.items.map(item => {
             // console.log(item.title)
-            return (
-              <div key={uuid()}>
-                <div>{item.title}</div>
-              </div>
-            );
+            return <Product {...item} />;       
         })}
-      </>
+      </div>
     );  
     
 });

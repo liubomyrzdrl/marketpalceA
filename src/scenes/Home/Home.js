@@ -6,7 +6,8 @@ import s from './Home.module.scss';
 import { Loader } from '../../component/Loader/Loader';
 import { Product } from '../../component/Product/Product';
 import { routes } from '../routes';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
+import uuid from 'uuid/v4';
 
 
 const Home = () =>  {
@@ -85,12 +86,13 @@ const handleFavorite = id => evt => {
     };
   return (
     <div className={s.homeWrapper}>  
+      <Link to={routes.testModal}>Test Modal</Link>
       <div className={s.homeWrapper__content}>            
         { store.latestProducts.items.map((item) => (
           <Product 
-            key={item.id}
+            key={uuid()}
             {...item}  
-            onClick={handleFavorite(item.id)}
+            onClick={handleFavorite(+item.id)}
           /> 
            ))}
        

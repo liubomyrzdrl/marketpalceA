@@ -29,7 +29,7 @@ export function Product ({
        <Faivorite onClick={onClick} id={id} saved={saved} />
        <NavLink 
          className={s.navProd}
-         to={generatePath(   routes.product, { productId: id } )}
+         to={generatePath(  routes.product, { productId: id } )}
        >     
          <div className={s.product__title}> 
            {' '}

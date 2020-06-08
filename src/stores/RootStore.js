@@ -23,7 +23,6 @@ export const RootStore = types.model('RootStore',{
    favorites: types.optional(FavoritesStore, {}),
    chats: types.optional(ChatStore, {}),
    logmessage: types.optional(LogMessageStore,{}),
-
 })
 .actions((store)=>({
    async bootstrap() { 

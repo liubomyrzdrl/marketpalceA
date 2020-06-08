@@ -11,21 +11,23 @@ import { useStore } from '../../stores/createStore';
 
 export const ProductFaivorites = observer(() => {
    const store = useStore();
+   const  snapshot = window.localStorage.getItem('favs'); 
    const itemFavorite = store.latestProducts.items.filter(item => { 
      return  item.saved === true; 
     });
 
   useEffect(() => {
-    if(store.auth.isLogin === true) {     
-        store.favorites.getArrayProductsFavorites.run();       
-    } else {
-      const snapshot = window.localStorage.getItem('favs');       
-      applySnapshot(store,JSON.parse(snapshot));     
-    };
-  },[]);
+    if(store.auth.isLogin === true) {   
+           
+         store.favorites.getArrayProductsFavorites.run();       
+    } else if(snapshot) {
+        applySnapshot(store,JSON.parse(snapshot));     
+      };
+  },[snapshot, store]);
 
-  const handleFavorite = () => {
-     if( store.auth.isLogin === true ){
+  const handleFavorite =  id => evt => {
+    console.log('handle favorite ');
+     if( store.auth.isLogin !== true ){
       onSnapshot(store, (snapshot) => {
         window.localStorage.setItem('favs',
         JSON.stringify({  
@@ -53,17 +55,19 @@ export const ProductFaivorites = observer(() => {
       <main>
         <SimpleHeader color={BLACK} name="logoWhite" colorFont="white" />
         <section className={s.faivoritesblock}>
-     
-          { store.auth.isLogin ? (
+             
+          {(store.auth.isLogin && store.favorites.items.length !== 0) ? (
               store.favorites.items.map(item => {
-                return <Product {...item} key={item.id}  onClick={handleFavorite(item.id)} />;
+                return <Product {...item} key={item.id} onClick={handleFavorite(item.id)} />;
               })
-          ) :(
-            itemFavorite.map(item => {
+           ) : <div>Dont have any favorite products</div>}
+
+          {
+            snapshot &&
+            (itemFavorite.map(item => {
                return  <Product {...item} key={item.id} onClick={handleFavorite(item.id)} />;
-             })
-          )}
-                 
+             }))
+           }                           
         </section> 
         <Footer />
       </main>

@@ -5,7 +5,7 @@ import t from 'prop-types';
 import { observer } from 'mobx-react';
 import Modal from 'react-modal';
 import Icon from '../Icons/Icon/Icon';
-import s from './Header.module.scss';
+import s from './SimpleHeader.module.scss';
 import { routes } from '../../scenes/routes';
 import { useStore } from '../../stores/createStore';
 import { InputSearch } from './components/Logo/InputSearch';
@@ -80,9 +80,9 @@ const Header = observer(({ color, name, colorFont }) => {
            <NavLink to={routes.inbox} className={s.right__chat}>
              <Icon name='chat' />
            </NavLink>  
-           <div className={s.sellButton}>
+           {/* <div className={s.sellButton}>
              <button type="button">SELL</button>
-           </div>   
+           </div>    */}
            {!store.auth.isLogin ? (
              <LoginButton colorFont={colorFont} onClick={navigateToLogin} />
               ) : <UserInfo />}

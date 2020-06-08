@@ -6,13 +6,23 @@
         align-items: center;
         width: 50px;
         &__oval {
-            position: absolute;
-            z-index: 1;
-            
-        } 
-        &__white {
-            z-index: 2;
-            cursor: pointer;
+            top: -17px;
+            position: relative;
+             
         }
+        &__white {
+            position: relative; 
+            bottom: 28px;
+            left: 10px;
+        }
+        // &__oval {
+        //     position: absolute;
+        //     z-index: 1;
+            
+        // } 
+        // &__white {
+        //     z-index: 2;
+        //     cursor: pointer;
+        // }
     }
 }
