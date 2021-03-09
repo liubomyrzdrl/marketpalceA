@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
-import { BrowserRouter, Switch, Route, Redirect, useLocation } from 'react-router-dom';
+import React  from 'react';
+import {
+ BrowserRouter, Switch, Route, useLocation } from 'react-router-dom';
 import { Main } from './Main/Main';
 import { Login } from './Login/Login';
 import { ProductSearch } from './ProductSearch/ProductSearch';
@@ -9,6 +10,8 @@ import { AddProduct } from '../component/Product/AddProduct/AddProduct';
 import { PrivateRoute } from './Auth/components/PrivateRoute';
 import { EditeProfile } from './Profile/EditeProfile';
 import TestContainer from '../component/TestModal/TestContainer';
+import RouterModal from './routesModal';
+import ModalAddProduct from './ModalAddProduct/ModalAddProduct';
 
 
 export const routes = {
@@ -32,7 +35,6 @@ export const routes = {
 
 function Router() {
 
-
   return (
     <BrowserRouter>
       <Switch>
@@ -43,10 +45,10 @@ function Router() {
         <Route path={routes.searchProd} component={ProductSearch} />
         <Route path={routes.editeProfile} component={EditeProfile} />
         <Route path={routes.faivorites} component={ProductFaivorites} />
-        <Route path={routes.newProduct} component={AddProduct} />
-        <Route path={routes.testModal} component={TestContainer} />
-        <Route exact component={Main} />         
+        {/* <Route path={routes.newProduct} component={RouterModal} /> */}    
+        <Route component={Main} />         
       </Switch>
+  
     </BrowserRouter>
   );
 }

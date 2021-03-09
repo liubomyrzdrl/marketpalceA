@@ -1,25 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { observer } from 'mobx-react';
 import { onSnapshot, applySnapshot, getSnapshot } from 'mobx-state-tree';
+import { useHistory, Link, useLocation } from 'react-router-dom';
+import uuid from 'uuid/v4';
 import { useStore } from '../../stores/createStore';
 import s from './Home.module.scss';
 import { Loader } from '../../component/Loader/Loader';
 import { Product } from '../../component/Product/Product';
 import { routes } from '../routes';
-import { useHistory, Link } from 'react-router-dom';
-import uuid from 'uuid/v4';
 
 
 const Home = () =>  {
    const store = useStore();    
+   let location = useLocation();
    const limit = 8;
    const history = useHistory();
    const modalAddProduct  = window.localStorage.getItem('modalAddProduct');
 
 
-   if (modalAddProduct === 'true') {            
-      history.push(routes.newProduct);
-   }
+  //  if (modalAddProduct === 'true') {            
+  //     history.push(routes.newProduct);
+  //  }
    
    const ID = store.latestProducts.items[ store.latestProducts.items.length -1];
      useEffect(() => { 
@@ -31,8 +32,7 @@ const Home = () =>  {
                 store.latestProducts.fetchLatest.run(limit);
                }else{
                 store.latestProducts.fetchLatest.run(fetchMoreLogin); 
-               }
-             
+               }             
            } else {
             const snapshot = window.localStorage.getItem('favs');
               if(!snapshot){
@@ -40,9 +40,8 @@ const Home = () =>  {
               } else {
                 applySnapshot(store,JSON.parse(snapshot));  
               }
-          }
-        
-      },[]);     
+          }       
+      },[store]);     
   
 
     function handleAddMoreProducts () {   
@@ -86,7 +85,7 @@ const handleFavorite = id => evt => {
     };
   return (
     <div className={s.homeWrapper}>  
-      <Link to={routes.testModal}>Test Modal</Link>
+      {/* <Link to={{ pathname: '/testModal', state: { test: location } }}>Test Modal</Link> */}
       <div className={s.homeWrapper__content}>            
         { store.latestProducts.items.map((item) => (
           <Product 

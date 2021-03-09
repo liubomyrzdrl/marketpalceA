@@ -1,27 +1,12 @@
 import React from 'react';
 import { Switch, Route, useLocation } from 'react-router-dom';
 
-function TestContainer(props) {
-    const location = useLocation();
-    console.log('location' ,location)
-    return (
-       
+export function TestContainer(props) {  
+ 
+    return (       
         <div>
-            <h4>TestContainer</h4>
-            <Switch >
-                <Route children={TestChildren}/>
-            </Switch>
+            <h4>TestContainer</h4>          
         </div>
     );
 }
 
-function TestChildren(props) {
-
-    return (
-        <div>
-            <h4>children</h4>            
-        </div>
-    );
-}
-
-export default TestContainer;

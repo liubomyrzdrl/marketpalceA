@@ -6,19 +6,17 @@ import { useLocation } from 'react-router-dom';
 import { ProductForm } from '../component/ProductForm';
 
 
-function removeDefaultAddProduct() {
-  window.localStorage.removeItem('modalAddProduct');
-}
+// function removeDefaultAddProduct() {
+//   window.localStorage.removeItem('modalAddProduct');
+// }
 
 export function AddProduct () {  
-  let location = useLocation();
-  
- console.log('locstion',location);
 
     return (
-      <main className={s.container} onClick={removeDefaultAddProduct}>
-        <SimpleHeader color={BLACK} name='logoWhite' />
+      <main className={s.container} >
+        {/* <SimpleHeader color={BLACK} name='logoWhite' /> */}
         <div className={s.content}>
+          <h4>AddProduct</h4>
           <ProductForm />
         </div>
       
